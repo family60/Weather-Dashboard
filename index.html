@@ -14,45 +14,46 @@
         <h1>Weather Dashboard</h1>
     </header>
 
-    <div class="container">
-        <div class="row">
+    <div class="card">
+        <div class="container">
+            <div class="row">
 
-            <aside class="col-4"><!--Search and local storage-->
-                <h2>Search for a City:</h2>
-                <input type="text" id="searchCity" class="form-control" placeholder="eg: 'Toronto'">
-                <button id="searchBtn" class="btn btn-primary">Search</button>
-                <form id="history"></form>
-            </aside>
+                <aside class="col-4"><!--Search and local storage-->
+                    <h2>Search for a City:</h2>
+                    <input type="text" id="searchCity" class="form-control" placeholder="eg: 'Toronto'">
+                    <button id="searchBtn" class="btn btn-primary">Search</button>
+                    <form id="history"></form>
+                </aside>
 
-            <section class="col-8"><!--Forecast (current and next 5 days)-->
-                <div class="col-12 border">
-                    <h3>Current Forecast</h3>
-                    <div class="row">
-                        <p id="cityName">City Name</p>
-                        <p>Date</p>
-                        <img id="currentIcon" src="placeholder" width="50px" height="50px">
+                <section class="col-8"><!--Forecast (current and next 5 days)-->
+                    <div class="col-12 border">
+                        <h3>Current Forecast</h3>
+                        <div class="row">
+                            <p id="cityName">City Name</p>
+                            <p id="date">Date</p>
+                            <img id="currentIcon" src="" class="icon">
+                        </div>
+                        
+                        <p id="temperature">Temperature:</p>
+                        <p id="humidity">Humidity:</p>
+                        <p id="windSpeed">Wind Speed:</p>
                     </div>
-                    
-                    <p id="temperature">Temperature:</p>
-                    <p id="humidity">Humidity:</p>
-                    <p id="windSpeed">Wind Speed:</p>
-                </div>
 
-                <div class="col-12">
-                    <h3>5-Day Forecast</h3>
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col"></div>
-                        <div class="col"></div>
-                        <div class="col"></div>
-                        <div class="col"></div>
+                    <div class="col-12">
+                        <h3>5-Day Forecast</h3>
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                            <div class="col"></div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
+            </div>
         </div>
     </div>
-
 
     <script src="./Assets/JS/script.js"></script>
 </body>
