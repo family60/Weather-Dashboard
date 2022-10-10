@@ -16,7 +16,7 @@ let weather ={
         const icon = data.list[0].weather[0].icon;
         console.log(cityName, temperature, humidity, windSpeed, icon);
         //replacing the default text with search results info
-        document.querySelector("#cityName").innerText = "Weather in " + cityName;
+        document.querySelector("#cityName").innerText = cityName;
         document.querySelector("#temperature").innerText = temperature + "°C";
         document.querySelector("#currentIcon").src = "https://openweathermap.org/img/wn/" + icon +"@2x.png";
         document.querySelector("#humidity").innerHTML = "Humidity: " + humidity + "%";
@@ -40,6 +40,55 @@ let weather ={
         var year = today.getFullYear();
 
         document.querySelector("#date").innerHTML = "(" + month + "/" + day + "/" + year + ")";
+
+        const fiveDayForecast = document.querySelectorAll(".five-day-forecast");
+        console.log(fiveDayForecast.length);
+        for(var c = 0; c < fiveDayForecast.length; c++){
+            var fiveDayForecastDate = new Date(data.list[c * 8 + 4].dt * 1000);
+            /*
+            Open weather api object data has a day time value that must be converted to be read easily.
+            However, the default hour is always set to 8pm (from what I can tell so far).
+            This means that to get the accurate 5 day forecast, the time mut be manipulated to an extent,
+            to read the future data easily.
+            (multiplying the index by 8 gives data of 4am every day, therefore adding 4 to that value
+                yeilds the data for a much more desirably 8am)
+            */
+            console.log("Five day Forecast Date Test: day " + (c + 1));
+            console.log(fiveDayForecastDate);
+            //Date of this index
+            var fiveDayForecastDay = fiveDayForecastDate.getDate();
+            var fiveDayForecastMonth = fiveDayForecastDate.getMonth() + 1;
+            var fiveDayForecastYear = fiveDayForecastDate.getYear();
+            var fiveDayForecastDateEl = document.createElement("p");
+            fiveDayForecastDateEl.innerHTML = fiveDayForecastMonth + "/" + fiveDayForecastDay + "/" + fiveDayForecastYear;
+            
+            //Temperature of this index
+            var fiveDayForecastTemperature = document.createElement("p");
+            fiveDayForecastTemperature.innerHTML = "Temp: " + data.list[c * 8 + 4].main.temp;
+            //Humidity of this index
+            var fiveDayForecastHumidity = document.createElement("p");
+            fiveDayForecastHumidity.innerHTML = "Humidity: " + data.list[c * 8 + 4].main.humidity;
+            //Windspeed of this index
+            var fiveDayForecastWindSpeed = document.createElement("p");
+            fiveDayForecastWindSpeed.innerHTML = "Windspeed: " + data.list[c * 8 + 4].wind.speed;
+            //Weather Icon of this index
+            var fiveDayForecastIcon = document.createElement("img");
+            fiveDayForecastIcon.setAttribute("src", "https://openweathermap.org/img/wn/" + data.list[c * 8 + 4].weather[0].icon +"@2x.png");
+            //appending in appropriate order
+            fiveDayForecast[c].append(fiveDayForecastDateEl);
+            fiveDayForecast[c].append(fiveDayForecastIcon);
+            fiveDayForecast[c].append(fiveDayForecastTemperature);
+            fiveDayForecast[c].append(fiveDayForecastHumidity);
+            fiveDayForecast[c].append(fiveDayForecastWindSpeed);
+
+        }
+
+
+
+
+
+
+
     },
     search: function (){
         this.fetchWeather(document.querySelector("#searchCity").value);
