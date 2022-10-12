@@ -4,7 +4,7 @@ const history = document.querySelector("#history");
 let weather ={
     apiKey: "fe4fff594a4888855d1b1cb52405061f",
     fetchWeather: function (city) {
-        fetch("http://api.openweathermap.org/data/2.5/forecast?q="
+        fetch("https://api.openweathermap.org/data/2.5/forecast?q="
         + city + "&units=metric&appid=" + this.apiKey
         ).then((response) => response.json()).then((data) =>
         this.displayWeather(data));//when "weather.fetchWeather()" is entered in the console or called, it will fetch the data from the weather api
