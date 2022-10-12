@@ -36,7 +36,7 @@ let weather ={
         var today = new Date(data.list[0].dt*1000);
         console.log(today);
         var day = today.getDate();
-        var month = today.getMonth();
+        var month = today.getMonth() + 1;
         var year = today.getFullYear();
 
         document.querySelector("#date").innerHTML = "(" + month + "/" + day + "/" + year + ")";
@@ -58,7 +58,7 @@ let weather ={
             //Date of this index
             var fiveDayForecastDay = fiveDayForecastDate.getDate();
             var fiveDayForecastMonth = fiveDayForecastDate.getMonth() + 1;
-            var fiveDayForecastYear = fiveDayForecastDate.getYear();
+            var fiveDayForecastYear = fiveDayForecastDate.getFullYear();
             var fiveDayForecastDateEl = document.createElement("p");
             fiveDayForecastDateEl.innerHTML = fiveDayForecastMonth + "/" + fiveDayForecastDay + "/" + fiveDayForecastYear;
             
@@ -82,13 +82,6 @@ let weather ={
             fiveDayForecast[c].append(fiveDayForecastWindSpeed);
 
         }
-
-
-
-
-
-
-
     },
     search: function (){
         this.fetchWeather(document.querySelector("#searchCity").value);
@@ -96,6 +89,28 @@ let weather ={
 };
 
 document.querySelector("#searchBtn").addEventListener("click", function() {
+    /*
+    The following is made to fix a bug where the forecast card's dont clear on every search but rather
+    keeps appending underneath the older searches in the same session. This is ofcourse not desirable.
+    Solution: delete cards on every search and add new, clean, empty ones.
+    */
+    var e = document.querySelector(".FiveDayForecast");
+    var child = e.lastElementChild;
+    while(child){
+        e.removeChild(child);
+        child = e.lastElementChild;
+    }
+
+    var forecastCards = document.createElement("div");
+    forecastCards.setAttribute("class", "col five-day-forecast");
+    e.appendChild(forecastCards.cloneNode(true));
+    e.appendChild(forecastCards.cloneNode(true));
+    e.appendChild(forecastCards.cloneNode(true));
+    e.appendChild(forecastCards.cloneNode(true));
+    e.appendChild(forecastCards.cloneNode(true));
+
+    
+    
     weather.search();//search with button click
 });
 
