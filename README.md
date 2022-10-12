@@ -9,4 +9,4 @@ This is what the application looks like when the user has already searched up a 
 ![image](https://user-images.githubusercontent.com/80120484/195439390-f54efb08-7446-4330-8fc5-61fa58ab34ad.png)
 
 ## Deployment
-Here is the link to a live demo of the application: 
+Here is the link to a live demo of the application: https://family60.github.io/Weather-Dashboard/
